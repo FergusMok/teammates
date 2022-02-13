@@ -29,7 +29,6 @@ import { SessionEditFormMode, SessionEditFormModel } from './session-edit-form-m
   styleUrls: ['./session-edit-form.component.scss'],
   providers: [{ provide: NgbDateParserFormatter, useClass: SessionEditFormDatePickerFormatter }],
   animations: [collapseAnim],
-  
 })
 export class SessionEditFormComponent {
   // enum
@@ -258,9 +257,5 @@ export class SessionEditFormComponent {
    */
   closeEditFormHandler(): void {
     this.closeEditFormEvent.emit();
-  }
-
-  openModal(): void {
-    this.modalService.open(DeadlineModalComponent);
   }
 }
