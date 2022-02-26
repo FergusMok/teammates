@@ -15,7 +15,6 @@ import { FEEDBACK_SESSION_NAME_MAX_LENGTH } from '../../../types/field-validator
 import { DateFormat } from '../datepicker/datepicker.component';
 import { SimpleModalType } from '../simple-modal/simple-modal-type';
 import { collapseAnim } from '../teammates-common/collapse-anim';
-import { DeadlineModalComponent } from './deadline-modal/deadline-modal.component';
 import { SessionEditFormDatePickerFormatter } from './session-edit-form-datepicker-formatter';
 import { SessionEditFormMode, SessionEditFormModel } from './session-edit-form-model';
 
