@@ -9,7 +9,7 @@ import
     FeedbackSessionPublishStatus,
     FeedbackSessionSubmissionStatus,
     ResponseVisibleSetting,
-    SessionVisibleSetting
+    SessionVisibleSetting,
   } from '../../../types/api-output';
 import { FEEDBACK_SESSION_NAME_MAX_LENGTH } from '../../../types/field-validator';
 import { DateFormat } from '../datepicker/datepicker.component';
@@ -114,7 +114,9 @@ export class SessionEditFormComponent {
   @Output()
   closeEditFormEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private simpleModalService: SimpleModalService, public calendar: NgbCalendar, public modalService: NgbModal) { }
+  constructor(private simpleModalService: SimpleModalService,
+              public calendar: NgbCalendar,
+              public modalService: NgbModal) { }
 
   /**
    * Triggers the change of the model for the form.
