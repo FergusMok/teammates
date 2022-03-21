@@ -7,6 +7,18 @@ indexes:
     name: googleId
   - direction: asc
     name: isArchived
+- kind: Instructor
+  properties:
+  - direction: asc
+    name: courseId
+  - direction: asc
+    name: email
+- kind: CourseStudent
+  properties:
+  - direction: asc
+    name: courseId
+  - direction: asc
+    name: email
 - kind: FeedbackSession
   properties:
   - direction: asc
