@@ -392,10 +392,9 @@ public class DataMigrationForCourseEntitySql extends DatastoreClient {
             teammates.storage.sqlentity.Team newTeam,
             CourseStudent oldStudent) {
         String truncatedStudentName = truncateToLength255(oldStudent.getName());
-        String truncatedComments = truncateToLength2000(oldStudent.getComments());
 
         Student newStudent = new Student(newCourse, truncatedStudentName, oldStudent.getEmail(),
-            truncatedComments, newTeam);
+            oldStudent.getComments(), newTeam);
         
         // newStudent.setUpdatedAt(oldStudent.getUpdatedAt());
         newStudent.setRegKey(oldStudent.getRegistrationKey());
@@ -534,14 +533,12 @@ public class DataMigrationForCourseEntitySql extends DatastoreClient {
     }
 
     private FeedbackSession createFeedbackSession(Course newCourse,
-            teammates.storage.entity.FeedbackSession oldSession) {
-        String truncatedSessionInstructions = truncateToLength2000(oldSession.getInstructions());
-            
+            teammates.storage.entity.FeedbackSession oldSession) {            
         teammates.storage.sqlentity.FeedbackSession newSession = new teammates.storage.sqlentity.FeedbackSession(
                 oldSession.getFeedbackSessionName(),
                 newCourse,
                 oldSession.getCreatorEmail(),
-                truncatedSessionInstructions,
+                oldSession.getInstructions(),
                 oldSession.getStartTime(),
                 oldSession.getEndTime(),
                 oldSession.getSessionVisibleFromTime(),
@@ -678,8 +675,6 @@ public class DataMigrationForCourseEntitySql extends DatastoreClient {
     private teammates.storage.sqlentity.FeedbackResponseComment createFeedbackResponseComment(
             teammates.storage.sqlentity.FeedbackResponse newResponse, FeedbackResponseComment oldComment,
             Section giverSection, Section recipientSection) {
-        String truncatedCommentText = truncateToLength2000(oldComment.getCommentText());
-
         teammates.storage.sqlentity.FeedbackResponseComment newComment =
                 new teammates.storage.sqlentity.FeedbackResponseComment(
                         newResponse,
@@ -687,7 +682,7 @@ public class DataMigrationForCourseEntitySql extends DatastoreClient {
                         oldComment.getCommentGiverType(),
                         giverSection,
                         recipientSection,
-                        truncatedCommentText,
+                        oldComment.getCommentText(),
                         oldComment.getIsVisibilityFollowingFeedbackQuestion(),
                         oldComment.getIsCommentFromFeedbackParticipant(),
                         oldComment.getShowCommentTo(),
@@ -1037,13 +1032,6 @@ public class DataMigrationForCourseEntitySql extends DatastoreClient {
      */
     protected String truncateToLength255(String str) {
         return truncate(str, 255);
-    }
-
-    /**
-     * Truncates to a length of 2000.
-     */
-    protected String truncateToLength2000(String str) {
-        return truncate(str, 2000);
     }
 
     /**
